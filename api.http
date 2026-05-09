@@ -1,0 +1,33 @@
+#### Versión 2 #########################
+### consultar todos los contactos
+GET http://127.0.0.1:8000/sprints
+
+### consultar contacto
+GET http://127.0.0.1:8000/sprints/2
+
+### crear contacto
+POST http://127.0.0.1:8000/contactos-v2
+Content-Type: application/json
+
+{
+    "nombre": "Pepe",
+    "email": "ana@test.com",
+    "telefono": "12345"
+}
+
+### modificar contacto
+PUT http://127.0.0.1:8000/contactos-v2/4
+Content-Type: application/json
+
+{
+    "nombre": "Pepe",
+    "email": "pepe@test.com",
+    "telefono": "789456"
+}
+
+### borrar contacto
+DELETE http://127.0.0.1:8000/contactos-v2/3
+
+###
+
+GET http://127.0.0.1:8000/test

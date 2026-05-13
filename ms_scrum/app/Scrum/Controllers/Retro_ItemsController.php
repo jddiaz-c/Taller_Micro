@@ -7,12 +7,12 @@ use Exception;
 class Retro_ItemsController {
 
     function getItems(){
-        $rows = Sprints::all();
+        $rows = Retro_Items::all();
         return $rows->toJson();
     }
     
     function guardarItem($data){
-        $item = new Retro_Item();
+        $item = new Retro_Items();
         $item->sprint_id = $data['sprint_id'];
         $item->categoria = $data['categoria'];
         $item->descripcion = $data['descripcion'];
@@ -23,7 +23,7 @@ class Retro_ItemsController {
     }
 
     function getItem($id){
-        $item = Retro_Item::find($id);
+        $item = Retro_Items::find($id);
         if(empty($item)){
             throw new Exception("El item $id no existe", 1);
         }

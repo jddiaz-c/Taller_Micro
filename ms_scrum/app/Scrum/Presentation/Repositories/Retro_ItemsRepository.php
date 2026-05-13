@@ -14,7 +14,7 @@ class Retro_ItemsRepository
     {
         $controller = new Retro_ItemsController();
         $items = $controller->getItems();
-        $response->getBody()->write($sprints);
+        $response->getBody()->write($items);
         return $response->withHeader("Content-Type", "application/json");
     }
 
@@ -24,7 +24,7 @@ class Retro_ItemsRepository
         $data = json_decode($bodyRequest, true);
         $controller = new Retro_ItemsController();
         $item = $controller->guardarItem($data);
-        $response->getBody()->write($sprint);
+        $response->getBody()->write($item);
         return $response
             ->withStatus(201)
             ->withHeader("Content-Type", "application/json");
@@ -35,10 +35,10 @@ class Retro_ItemsRepository
         try {
             $id = $args['id'];
 
-            $controller = new SprintsController();
+            $controller = new Retro_ItemsController();
             $item = $controller->getItem($id);
 
-            $resposeBody = $sprint->toJson();
+            $resposeBody = $item->toJson();
             $resp->getBody()->write($resposeBody);
             return $resp->withHeader("Content-Type", "application/json");
         } catch (Exception $ex) {
@@ -58,10 +58,10 @@ class Retro_ItemsRepository
             $body = $req->getBody()->getContents();
             $data = json_decode($body, true);
 
-            $controller = new SprintsController();
+            $controller = new Retro_ItemsController();
             $item = $controller->modificarItem($id, $data);
 
-            $dataResponse = $sprint->toJson();
+            $dataResponse = $item->toJson();
             $resp->getBody()->write($dataResponse);
             return $resp
                 ->withStatus(200)
@@ -82,7 +82,7 @@ class Retro_ItemsRepository
             $id = $args['id'];
 
             $controller = new Retro_ItemsController();
-            $controller->borrarSprint($id);
+            $controller->borrarItem($id);
 
             $dataResponse = json_encode(['mgs' => 'Item borrado']);
             $resp->getBody()->write($dataResponse);

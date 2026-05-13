@@ -1,13 +1,13 @@
 <?php
 namespace App\Scrum\Controllers;
 
-use App\Scrum\Models\Sprints;
+use App\Scrum\Models\Sprint;  // ← debe estar aquí, antes de la clase
 use Exception;
 
 class SprintsController {
 
     function getSprints(){
-        $rows = Sprints::all();
+        $rows = Sprint::all();
         return $rows->toJson();
     }
     

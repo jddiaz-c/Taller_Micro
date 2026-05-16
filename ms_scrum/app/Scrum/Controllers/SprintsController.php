@@ -6,13 +6,25 @@ use Exception;
 
 class SprintsController {
 
-    function getSprints(){
+    function getAll(){
         $rows = Sprint::all();
         return $rows->toJson();
     }
     
-    function guardarSprint($data){
-        $sprint = new Sprint();
+    function saveData($data){
+        $camposObligatorios = ['nombre', 'fecha_inicio', 'fecha_fin'];
+    $camposFaltantes = [];
+
+    foreach ($camposObligatorios as $campo) {
+        if (empty($data[$campo])) {
+            $camposFaltantes[] = $campo;
+        }
+    }
+
+    if (!empty($camposFaltantes)) {
+        throw new Exception("Faltan campos obligatorios: " . implode(', ', $camposFaltantes), 3);
+    }
+            $sprint = new Sprint();
         $sprint->nombre = $data['nombre'];
         $sprint->fecha_inicio = $data['fecha_inicio'];
         $sprint->fecha_fin = $data['fecha_fin'];
@@ -20,7 +32,7 @@ class SprintsController {
         return $sprint->toJson();
     }
 
-    function getSprint($id){
+    function getOne($id){
         $sprint = Sprint::find($id);
         if(empty($sprint)){
             throw new Exception("El sprint $id no existe", 1);
@@ -28,8 +40,8 @@ class SprintsController {
         return $sprint;
     }
 
-    function modificarSprint($id, $data){
-        $sprint = $this->getSprint($id);
+    function modify($id, $data){
+        $sprint = $this->getOne($id);
         $sprint->nombre = $data['nombre'];
         $sprint->fecha_inicio = $data['fecha_inicio'];
         $sprint->fecha_fin = $data['fecha_fin'];
@@ -37,8 +49,8 @@ class SprintsController {
         return $sprint;
     }
 
-    function borrarSprint($id){
-        $sprint = $this->getSprint($id);
+    function remove($id){
+        $sprint = $this->getOne($id);
         $sprint->delete();
     }
 }

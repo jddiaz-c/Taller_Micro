@@ -13,7 +13,7 @@ POST http://127.0.0.1:8000/sprints
 Content-Type: application/json
 
 {
-  "nombre": "Sprint Prueba",
+  "nombre": "",
   "fecha_inicio": "2026-05-01",
   "fecha_fin": "2026-05-15"
 }
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 
 ### borrar sprint
-DELETE http://127.0.0.1:8000/sprints/1
+DELETE http://127.0.0.1:8000/sprints/2
 
 
 
@@ -43,7 +43,7 @@ GET http://127.0.0.1:8000/retro_items
 
 
 ### consultar item
-GET http://127.0.0.1:8000/retro_items/1
+GET http://127.0.0.1:8000/retro_items/2
 
 
 ### crear item
@@ -51,7 +51,7 @@ POST http://127.0.0.1:8000/retro_items
 Content-Type: application/json
 
 {
-  "sprint_id": 2,
+  "sprint_id": 4,
   "categoria": "Backend",
   "descripcion": "Implementar endpoint de autenticación",
   "cumplida": false,
@@ -60,12 +60,12 @@ Content-Type: application/json
 
 
 ### modificar item
-PUT http://127.0.0.1:8000/retro_items/1
+PUT http://127.0.0.1:8000/retro_items/2
 Content-Type: application/json
 
 {
-  "sprint_id": 1,
-  "categoria": "Backend",
+  "sprint_id": 4,
+  "categoria": "accion",
   "descripcion": "Implementar endpoint de autenticación",
   "cumplida": false,
   "fecha_revision": "2026-05-10"
